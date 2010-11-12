@@ -4,7 +4,7 @@ Filename:    ListenServer.cpp
 */
 
 #include "ListenServer.h"
-#include "GameServer.h"
+#include "../breslingameserver/GameServer.h"
 
 //-------------------------------------------------------------------------------------
 ListenServer::ListenServer()

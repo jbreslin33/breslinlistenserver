@@ -1,4 +1,3 @@
-#include "GameServer.h"
 #include "ListenServer.h"
 
 #include <iostream>
@@ -6,16 +5,12 @@
 
 int main()
 {
-    std::cout << "Launching GameServer..." << std::endl;
+    std::cout << "Launching ListenServer..." << std::endl;
 
-    GameServer*   gameServer   = new GameServer  ();
     ListenServer* listenServer = new ListenServer();
 
-    listenServer->setGameServer(gameServer);
-
-
-    bool gameOn = true;
-    while (gameOn == true)
+    bool listenOn = true;
+    while (listenOn == true)
     {
         listenServer->processRequests();
     }
