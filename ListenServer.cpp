@@ -93,7 +93,6 @@ void ListenServer::processRequests()
 
     if (mGameServer != NULL)
     {
-
         printf("We have a Game Server\n");
         mGameServer->processClientMessage(newClientMessage);
     }
