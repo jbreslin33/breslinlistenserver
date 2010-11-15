@@ -18,7 +18,7 @@ Filename:    ListenServer.h
 
 #define MAXBUFLEN 10;
 
-class GameServer;
+class MessageHandler;
 
 class ListenServer
 {
@@ -33,12 +33,11 @@ public:
     void initializeVariables();
     bool initializeListener();
     void processRequests();
-    void setGameServer(GameServer* gameServer) { mGameServer = gameServer; }
-
+    void setMessageHandler(MessageHandler* messageHandler) { mMessageHandler = messageHandler; }
 
 protected:
 
-    GameServer* mGameServer;
+    MessageHandler* mMessageHandler;
 
     int sockfd;
     struct addrinfo hints, *servinfo, *p;

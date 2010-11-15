@@ -4,7 +4,7 @@ Filename:    ListenServer.cpp
 */
 
 #include "ListenServer.h"
-#include "../breslingameserver/GameServer.h"
+#include "../breslinmessagehandler/MessageHandler.h"
 
 //-------------------------------------------------------------------------------------
 ListenServer::ListenServer()
@@ -30,14 +30,13 @@ void *ListenServer::get_in_addr(struct sockaddr *sa)
 
 void ListenServer::initializeVariables()
 {
-    mGameServer = NULL;
+    mMessageHandler = NULL;
 
     memset(&hints, 0, sizeof hints);
     hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
     hints.ai_socktype = SOCK_DGRAM;
     hints.ai_flags = AI_PASSIVE; // use my IP
 }
-
 
 bool ListenServer::initializeListener()
 {
@@ -73,7 +72,6 @@ bool ListenServer::initializeListener()
     printf("listener: waiting to recvfrom...\n");
 }
 
-
 void ListenServer::processRequests()
 {
     //Did something go wrong?
@@ -91,13 +89,13 @@ void ListenServer::processRequests()
     }
     printf("listener: packet contains \"%s\"\n", newClientMessage);
 
-    if (mGameServer != NULL)
+    if (mMessageHandler != NULL)
     {
-        printf("We have a Game Server\n");
-        mGameServer->processClientMessage(newClientMessage);
+        printf("We have a MessageHandler\n");
+	mMessageHandler->translateMessage(newClientMessage);
     }
     else
     {
-        printf("No Game Server, do nothing\n");
+        printf("No MessageHandler, do nothing\n");
     }
 }
