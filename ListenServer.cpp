@@ -6,13 +6,16 @@ Filename:    ListenServer.cpp
 #include "ListenServer.h"
 #include "../breslinmessagehandler/MessageHandler.h"
 
+#include <iostream>
+
 //-------------------------------------------------------------------------------------
 ListenServer::ListenServer()
 {
-    mMaxBufferLength = MAXBUFLEN;
-    mPort = "4950";
-    initializeVariables();
-    initializeListener();
+	std::cout << "Creating ListenServer/n";
+    	mMaxBufferLength = MAXBUFLEN;
+   	mPort = "4950";
+    	initializeVariables();
+    	initializeListener();
 }
 //-------------------------------------------------------------------------------------
 ListenServer::~ListenServer(void)
