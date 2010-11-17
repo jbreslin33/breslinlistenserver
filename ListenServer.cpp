@@ -11,7 +11,7 @@ Filename:    ListenServer.cpp
 //-------------------------------------------------------------------------------------
 ListenServer::ListenServer()
 {
-	std::cout << "Creating ListenServer/n";
+	std::cout << "ListenServer Constructor\n";
     	mMaxBufferLength = MAXBUFLEN;
    	mPort = "4950";
     	initializeVariables();
