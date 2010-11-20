@@ -16,7 +16,7 @@ Filename:    ListenServer.h
 #include <arpa/inet.h>
 #include <netdb.h>
 
-#define MAXBUFLEN 10;
+#define MAXBUFLEN 100;
 
 class MessageHandler;
 
