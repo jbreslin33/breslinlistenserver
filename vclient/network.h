@@ -1,8 +1,6 @@
 #ifndef NETWORK_H
 #define NETWORK_H
 
-
-
 #define COMMAND_HISTORY_SIZE	64
 
 #define KEY_UP					1
