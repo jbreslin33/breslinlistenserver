@@ -211,55 +211,33 @@ void CArmyWar::PredictMovement(int prevFrame, int curFrame)
 void CArmyWar::MovePlayer(void)
 {
 
-	clientData *client = clientList;
+        static Ogre::Real mMove = 100;
+        Ogre::Vector3 transVector = Ogre::Vector3::ZERO;
 
-	static Ogre::Real mMove = 100;
-	Ogre::Vector3 transVector = Ogre::Vector3::ZERO;
 
-	for( ; client != NULL; client = client->next)
-	{
-		// Remote players
-		if(client != localClient)
-		{
-			CalculateVelocity(&client->command, frametime);
+        if(keys[VK_DOWN])
+        {
+                transVector.y -= mMove;
 
-			client->command.origin.x += client->command.vel.x;
-			client->command.origin.y += client->command.vel.y;
+        }
 
-            transVector.x = client->command.origin.x;
-            transVector.y = client->command.origin.y;
+        if(keys[VK_UP])
+        {
+                transVector.y += mMove;
+        }
 
-			client->myNode->setPosition(transVector);
-		}
+        if(keys[VK_LEFT])
+        {
+                transVector.x -= mMove;
+        }
 
-		else 
-		{
+        if(keys[VK_RIGHT])
+        {
+                transVector.x += mMove;
+        }
 
-			if(keys[VK_DOWN])
-			{
-				transVector.y -= mMove;
-
-			}
-
-			if(keys[VK_UP])
-			{
-				transVector.y += mMove;
-			}
-
-			if(keys[VK_LEFT])
-			{
-				transVector.x -= mMove;
-			}
-
-			if(keys[VK_RIGHT])
-			{
-				transVector.x += mMove;
-			}
-
-			if(localClient)
-			   localClient->myNode->translate(transVector * rendertime, Ogre::Node::TS_LOCAL);
-		}
-    }
+        if(localClient)
+           localClient->myNode->translate(transVector * rendertime, Ogre::Node::TS_LOCAL);
 
 }
 
