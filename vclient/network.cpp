@@ -28,7 +28,7 @@ void CArmyWar::StartConnection()
 		char text[64];
 		sprintf(text, "Could not open client socket");
 
-		MessageBox(NULL, text, "Error", MB_OK);
+		//MessageBox(NULL, text, "Error", MB_OK);
 	}
 
 	Connect();
@@ -110,7 +110,7 @@ void CArmyWar::ReadPackets(void)
 			break;
 
 		case USER_MES_SERVEREXIT:
-			MessageBox(NULL, "Server disconnected", "Info", MB_OK);
+			//MessageBox(NULL, "Server disconnected", "Info", MB_OK);
 			Disconnect();
 			break;
 
