@@ -315,12 +315,12 @@ void CArmyWar::MoveObjects(void)
 			//client->myNode->translate(transVector, Ogre::Node::TS_LOCAL);
             client->myNode->setPosition(transVector);
 
-
+/*
             LogString("transVector.x %f: ", transVector.x);
 			LogString("transVector.y %f: ", transVector.y);
 			LogString("predictedOrigin.x %f: ", client->command.predictedOrigin.x);
 			LogString("predictedOrigin.y %f: ", client->command.predictedOrigin.y);
-
+*/
 		}
 	}
 }
