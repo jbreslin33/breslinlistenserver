@@ -234,8 +234,13 @@ int keyPress(void)
 //-----------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+
+	game = new CArmyWarServer;
+
 	LogString("Welcome to Army War Server v2.0");
 	LogString("-------------------------------\n");
+
+
 
 	if(argc > 1)
 	{
@@ -248,16 +253,6 @@ int main(int argc, char **argv)
 	// Ignore the SIGPIPE signal, so the program does not terminate if the
 	// pipe gets broken
 	signal(SIGPIPE, SIG_IGN);
-
-	if(Lobby.InitNetwork() == 1)
-	{
-		exit(0);
-	}
-
-	if(Signin.InitNetwork() == 1)
-	{
-		exit(0);
-	}
 
 	LogString("Init successful");
 
@@ -279,15 +274,6 @@ int main(int argc, char **argv)
 					time = newTime - oldTime;
 				} while (time < 1);
 
-				Lobby.Frame(time);
-				Signin.Frame(time);
-
-				CArmyWarServer *list = Lobby.GetGameList();
-
-				for( ; list != NULL; list = list->next)
-				{
-					list->Frame(time);
-				}
 
 				oldTime = newTime;
 			}
@@ -303,15 +289,7 @@ int main(int argc, char **argv)
 					time = newTime - oldTime;
 				} while (time < 1);
 
-				Lobby.Frame(time);
-				Signin.Frame(time);
-
-				CArmyWarServer *list = Lobby.GetGameList();
-
-				for( ; list != NULL; list = list->next)
-				{
-					list->Frame(time);
-				}
+				game->Frame(time);
 
 				oldTime = newTime;
 			}
@@ -319,8 +297,7 @@ int main(int argc, char **argv)
 	}
 	catch(...)
 	{
-		Lobby.ShutdownNetwork();
-		Signin.ShutdownNetwork();
+
 		dreamSock_Shutdown();
 
 		LogString("Unknown Exception caught in main loop");
@@ -330,8 +307,7 @@ int main(int argc, char **argv)
 
 	LogString("Shutting down everything");
 
-	Lobby.ShutdownNetwork();
-	Signin.ShutdownNetwork();
+
 	dreamSock_Shutdown();
 
 	return 0;
