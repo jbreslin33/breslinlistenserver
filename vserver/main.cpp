@@ -237,6 +237,11 @@ int main(int argc, char **argv)
 
 	game = new CArmyWarServer;
 
+	if(game->InitNetwork() != 0)
+	{
+		LogString("Could not create game server");
+	}
+
 	LogString("Welcome to Army War Server v2.0");
 	LogString("-------------------------------\n");
 
