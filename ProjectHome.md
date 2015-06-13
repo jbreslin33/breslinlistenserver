@@ -1,0 +1,1 @@
+It only moves in xy and has no smoothing I don't believe for remotes.
